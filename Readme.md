@@ -9,7 +9,7 @@
 # Setting up the project on your machine <a name="setup"></a>
 
 ### 1- Run the following command
-    git clone https://github.com/Fomeistaken/stats6.git
+    git clone https://github.com/Fomeistaken/STAT6
 
 ### 2-Rename `.env.template` to `.env`
 ### 3-To get the Discord Bot's token, go to [This Link](https://discord.com/developers/applications) and create a new application.
