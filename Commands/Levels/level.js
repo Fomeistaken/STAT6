@@ -31,7 +31,7 @@ module.exports = {
     const level = options.getInteger('level')
 
     
-    Mee6LevelsApi.getUserXp('850742802447204402', userId).then(user => {
+    Mee6LevelsApi.getUserXp(guildId, userId).then(user => {
       if(!user){return interaction.reply(`User hasn't started sending messages yet.`)}
       if(level<= user.level) return interaction.reply(user.tag, ' has already reached that level')
 
