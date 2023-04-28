@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 const Mee6LevelsApi = require("mee6-levels-api");
+var timeout =[]
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -20,6 +21,7 @@ module.exports = {
     )
     .setDMPermission(false),
   async execute(interaction) {  
+    if (timeout.includes(interaction.user.id)) return await interaction.reply({content: 'You are on command cooldown, try again later', ephemeral:true})
     const {options} = interaction  
     let sampleoutput = {"id":"849526087171571764","level":1,"username":"Fome","discriminator":"6462","avatarUrl":"https://cdn.discordapp.com/avatars/849526087171571764/cabfafc122b713031dcfaca35f1f8cf3","messageCount":8,"tag":"Fome#6462","xp":{"userXp":61,"levelXp":155,"totalXp":161},"rank":1}
 
@@ -33,7 +35,7 @@ module.exports = {
     
     Mee6LevelsApi.getUserXp(guildId, userId).then(user => {
       if(!user){return interaction.reply(`User hasn't started sending messages yet.`)}
-      if(level<= user.level) return interaction.reply(user.tag, ' has already reached that level')
+      if(level<= user.level) return interaction.reply(`${user.tag} has already reached that level`)
 
       function getTimeForXP(xp) {
         const averageXP = (Number(user.xp.totalXp)/Number(user.messageCount)).toFixed(2);
@@ -85,6 +87,10 @@ module.exports = {
 
 
     });
+    timeout.push(interaction.user.id)
+    setTimeout(() =>{
+      timeout.shift()
+    }, 5000)
 
   },
 };

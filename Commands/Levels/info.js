@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 const Mee6LevelsApi = require("mee6-levels-api");
+var timeout =[]
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -12,7 +13,8 @@ module.exports = {
         .setDescription("The user you want to get the info of")
     )
     .setDMPermission(false),
-  async execute(interaction) {    
+  async execute(interaction) { 
+      if (timeout.includes(interaction.user.id)) return await interaction.reply({content: 'You are on command cooldown, try again later', ephemeral:true})   
     const user = interaction.user
     const unm = interaction.options.getUser("user") || user
     if(unm.bot){return interaction.reply(`Bot's can't be ranked!`)}
@@ -62,6 +64,10 @@ module.exports = {
 
         interaction.reply({embeds: [embed]})
     });
+     timeout.push(interaction.user.id)
+      setTimeout(() =>{
+        timeout.shift()
+      }, 5000)
 
   },
 };
