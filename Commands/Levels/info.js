@@ -47,7 +47,6 @@ module.exports = {
         var xp_needed = xp_to_desired_level - current_xp;
         var avg_messages_needed_to_send = Math.ceil(xp_needed / (Number(user.xp.totalXp)/Number(user.messageCount)).toFixed(2));
         
-        console.log(JSON.stringify(user))
 
         const embed = new EmbedBuilder()
         .setTitle(`MEE6 information for ${user.tag}`)

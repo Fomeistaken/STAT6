@@ -16,14 +16,20 @@
 
 ### 4-Once created the bot, go to the bots section on in the sidebar and click build a bot, after that get the bot token and paste it in the `.env` file in place of `yourdiscordbottoken`
 
-### 5- In the Discord Developer Portal in the sidebar go to OAuth2 then URL generator and invite the bot to your server with admininstrator permissions just for safety measure
+### 5-Create a File called config.js and paste the following code:
+    require('dotenv').config()
+    module.exports ={
+    token: process.env['TOKEN'],
+    }
+
+### 6- In the Discord Developer Portal in the sidebar go to OAuth2 then URL generator and invite the bot to your server with admininstrator permissions just for safety measure
 ### 3- Run the following commands
         npm install
         node index.js
 `npm install` installs the required libraries and
 `node index.js` start the project 
 
-_PS: You need MEE6 with its ranking system in your server and your server leaderboard should be public or the code won't work_
+### _You need MEE6 with its ranking system in your server and your server leaderboard should be public or the code won't work_
 
 # How to Contribute <a name="contribute"></a>
 Thank you for your interest in contributing to this project! We welcome any kind of contribution, including but not limited to bug reports, feature requests, documentation improvements, and code contributions.
